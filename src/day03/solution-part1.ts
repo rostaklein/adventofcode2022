@@ -9,7 +9,7 @@ const getLetterValue = (letter: string) => {
   return isUpperCase ? charCode - 38 : charCode - 96;
 };
 
-const getRucksacks = () => {
+export const getSolution = (input: string[]) => {
   return input
     .map((line) => ({
       first: line
@@ -50,4 +50,4 @@ const getRucksacks = () => {
     }, 0);
 };
 
-console.log(getRucksacks());
+console.log(getSolution(input));
