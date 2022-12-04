@@ -3,7 +3,7 @@ export const loadInputData = async (
   type: "input" | "demo" = "input"
 ) => {
   const rawData = await Deno.readTextFile(
-    `./src/day${dayNumber}/input/${type}.txt`
+    `./day${dayNumber}/input/${type}.txt`
   );
 
   return rawData.split("\n");
