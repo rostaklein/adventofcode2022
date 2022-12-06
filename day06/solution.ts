@@ -6,12 +6,12 @@ const hasUniqueCharacters = (str: string) => {
   return new Set(str.split("")).size === str.length;
 };
 
-export const getSolution = (input: string[]) => {
+export const getSolution = (input: string[], consequentCharsCount: number) => {
   let i = 0;
   let lastFour = "";
   for (const char of input[0]) {
     lastFour += char;
-    if (i > 3) {
+    if (i > consequentCharsCount - 1) {
       const firstRemoved = lastFour.split("");
       firstRemoved.shift();
       lastFour = firstRemoved.join("");
@@ -23,4 +23,5 @@ export const getSolution = (input: string[]) => {
   }
 };
 
-console.log(getSolution(input));
+console.log(getSolution(input, 4));
+console.log(getSolution(input, 14));
