@@ -14,6 +14,7 @@ type Instruction =
 class Processor {
   x = 1;
   cycle = 0;
+  image = "";
   heap: Record<number, Instruction[]> = {};
 
   signalStrengths: number[] = [];
@@ -40,7 +41,25 @@ class Processor {
   private nextCycle() {
     this.cycle++;
 
+    this.drawImage();
     this.signalStrengths[this.cycle] = this.x * this.cycle;
+  }
+
+  private drawImage() {
+    const breakPoints = [40, 80, 120, 160, 200, 240];
+    const spritePosition = [this.x - 1, this.x, this.x + 1];
+
+    const pixelPosInLine = (this.cycle - 1) % 40;
+
+    if (spritePosition.includes(pixelPosInLine)) {
+      this.image += "#";
+    } else {
+      this.image += ".";
+    }
+
+    if (breakPoints.includes(this.cycle)) {
+      this.image += "\n";
+    }
   }
 }
 
@@ -63,7 +82,7 @@ export const getSolution = (input: string[]) => {
 
   processor.process();
 
-  console.log(processor);
+  console.log(processor.image);
   return (
     processor.signalStrengths[20] +
     processor.signalStrengths[60] +
