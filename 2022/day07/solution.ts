@@ -1,4 +1,4 @@
-import { loadInputData } from "../loadInputData.ts";
+import { loadInputData } from "../../loadInputData.ts";
 
 const input = await loadInputData("07");
 
